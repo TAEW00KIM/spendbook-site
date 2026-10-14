@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spendbook: 가계부 지원</title>
+<style>
+  :root { color-scheme: light dark; --fg: #111111; --sub: #666666; --bg: #ffffff; --line: #dddddd; }
+  @media (prefers-color-scheme: dark) { :root { --fg: #f2f2f2; --sub: #999999; --bg: #000000; --line: #2a2a2a; } }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif; }
+  main { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font-size: 26px; margin: 0 0 4px; }
+  h2 { font-size: 18px; margin: 32px 0 8px; padding-top: 16px; border-top: 1px solid var(--line); }
+  .sub { color: var(--sub); font-size: 14px; }
+  ol, ul { padding-left: 20px; }
+  li { margin: 4px 0; }
+  a { color: inherit; text-decoration: underline; }
+</style>
+</head>
+<body>
+<main>
+<h1>Spendbook: 가계부 지원</h1>
+<p class="sub">카드값을 내고도 남는 돈을 바로 봅니다</p>
+
+<p>궁금한 점이나 문제가 있으면 이메일로 알려 주세요. 보통 2~3일 안에 답합니다.<br>
+이메일: <a href="mailto:twkk0819@gmail.com">twkk0819@gmail.com</a></p>
+
+<h2>손님과 로그인은 무엇이 다른가요?</h2>
+<p>첫 화면에서 <b>로그인 없이 시작</b>을 누르면 가입 없이 바로 씁니다. 기록은 이 기기에만 저장되고 서버로 보내지 않습니다. <b>Apple로 계속</b>으로 로그인하면 기록이 계정에 저장되어 기기를 바꿔도 이어 쓸 수 있고, 카드 내역 가져오기와 AI 에이전트 연결을 쓸 수 있습니다. 앱은 이름과 이메일을 받지 않습니다.</p>
+<ul>
+  <li>손님이 나중에 로그인하면, 그 계정에 거래가 아직 없을 때 기기의 기록이 계정으로 올라갑니다.</li>
+  <li>이미 기록이 있는 계정으로 로그인하면 합치지 않고, 기기 데이터를 버리고 계정 데이터를 쓰거나 취소하는 둘 중에서 고릅니다.</li>
+  <li>로그아웃하면 이 기기의 기록은 지워지고, 계정에 있는 기록은 다시 로그인하면 돌아옵니다. 서버에 올라가지 못한 변경은 사라집니다.</li>
+</ul>
+
+<h2>결제 알림을 자동으로 기록하려면?</h2>
+<p>iOS는 다른 앱의 알림을 앱이 직접 읽을 수 없어서, 단축어 앱의 자동화가 알림 내용을 가계부에 넘겨 주는 방식입니다. 기록은 앱을 열지 않고 <b>확인 필요</b> 거래로 들어가고, 금액과 분류는 앱에서 확인하고 확정합니다.</p>
+<ol>
+  <li>앱의 <b>설정 → 결제 알림 자동 기록</b>을 엽니다.</li>
+  <li><b>자동화 한 번에 추가</b>를 누르고, 단축어 앱이 열리면 <b>단축어 추가</b>를 누릅니다. 신한 SOL페이와 토스 알림을 받으면 바로 기록하는 자동화가 켜진 채로 들어갑니다(iOS 27의 알림 트리거 기준).</li>
+  <li>결제를 하나 해 보세요. 가계부에 <b>확인 필요</b> 거래가 생기면 됩니다.</li>
+</ol>
+<p><b>다른 은행이나 카드 앱을 더하려면</b>: 단축어 앱의 <b>자동화</b>에서 <b>결제 알림 기록</b> 자동화를 열고, <b>앱</b> 옆의 +로 그 앱을 고릅니다. 그 앱 알림에 “승인”이나 “결제”와 금액이 들어 있으면 읽습니다. 처음부터 직접 만들 때는 새 자동화에서 <b>알림</b>을 고르고, 앱을 고른 뒤 <b>즉시 실행</b>(실행 전에 묻지 않음)으로 하고, 동작에 가계부의 <b>결제 알림 기록</b>을 넣어 <b>알림 내용</b>에 알림 본문을 연결합니다.</p>
+<ul>
+  <li>알림 트리거가 보이지 않으면 <b>메시지</b> 자동화로 문자를 기록할 수 있습니다(앱의 같은 화면에 방법이 있습니다).</li>
+  <li>같은 결제가 알림과 문자로 두 번 와도, 금액과 가맹점이 같고 시각이 1분 안이면 한 번만 기록합니다.</li>
+  <li>승인취소 알림은 같은 금액과 가맹점의 최근 거래를 취소로 바꿉니다. 광고, 혜택, 안내, 내가 보낸 돈 알림은 기록하지 않습니다.</li>
+  <li>결제인데 기록되지 않았다면 그 알림 문구를 이메일로 보내 주세요. 알림 본문은 거래의 원문으로 함께 저장됩니다(앞 500자까지, 개인정보 처리방침 참고).</li>
+</ul>
+
+<h2>카드 이용내역 엑셀은 어떻게 가져오나요?</h2>
+<p>현재 <b>신한카드 카드이용내역 엑셀(.xlsx)</b>을 지원합니다. 구형 .xls는 지원하지 않습니다. 로그인한 경우에만 쓸 수 있습니다.</p>
+<ol>
+  <li>카드사 앱이나 사이트에서 받은 .xlsx 파일을 iPhone의 파일 앱에 둡니다(2MB 이하).</li>
+  <li>가계부의 <b>설정 → 카드 내역 가져오기 → 파일 선택</b>에서 파일을 고릅니다. 카드가 여럿이면 어느 카드 계좌인지 고를 수 있고, 자동이면 파일의 이용카드로 찾습니다.</li>
+  <li>미리보기에 새로 들어올 거래, 이미 있는 거래와 합쳐질 것, 취소로 바뀔 것이 나옵니다. 확인한 뒤 <b>가져오기</b>를 누르면 반영됩니다.</li>
+</ol>
+<p>이미 알림으로 기록해 둔 거래는 승인번호나 같은 금액과 시각으로 찾아 중복 없이 맞춥니다. 파일은 서버에서 읽은 뒤 저장하지 않고, 반영한 거래만 계정에 남습니다.</p>
+
+<h2>AI 에이전트(Claude, ChatGPT)에 연결할 수 있나요?</h2>
+<p>로그인한 경우 가능합니다. <a href="../connect/">연결 안내</a>를 보세요.</p>
+
+<h2>계정을 삭제하려면?</h2>
+<p>앱의 <b>설정 → 계정 → 계정 삭제</b>에서 두 번 확인하면 지워집니다. 서버의 모든 기록, 에이전트 토큰, Apple 로그인 연결이 즉시 삭제되고 되살릴 수 없습니다. 백업 사본은 최대 30일 안에 지워집니다. 로그인하지 않은 손님의 기록은 앱을 삭제하거나 <b>설정 → 계정 → 기기 데이터 지우기</b>로 지웁니다.</p>
+
+<h2>사진은 어디에 저장되나요?</h2>
+<p>거래에 붙인 영수증과 캡처 사진은 이 기기에만 저장하고 서버로 보내지 않습니다. 그래서 기기를 바꾸면 사진은 따라가지 않습니다.</p>
+
+<h2>개인정보</h2>
+<p><a href="../privacy/">개인정보 처리방침</a>을 확인해 주세요.</p>
+
+<h2 lang="en">Support (English)</h2>
+<p lang="en">Questions or problems? Email <a href="mailto:twkk0819@gmail.com">twkk0819@gmail.com</a>. You can start without signing in (data stays on your device) or continue with Apple to sync. Payment-notification auto recording is set up in Settings → 결제 알림 자동 기록 using the Shortcuts app. Card statement import (Shinhan Card .xlsx) is in Settings → 카드 내역 가져오기 and requires signing in. You can delete your account in Settings → Account → 계정 삭제 (Delete Account). See the <a href="../privacy/">privacy policy</a>.</p>
+</main>
+</body>
+</html>
